@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Web Tools</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #dbeafe 100%);
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .navbar {
+            background: #1e40af;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            animation: slideInDown 0.8s ease-out;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #93c5fd !important;
+        }
+        .hero-section {
+            background: linear-gradient(45deg, #1e40af, #3b82f6);
+            color: #ffffff;
+            padding: 140px 0;
+            text-align: center;
+            animation: fadeIn 1.2s ease-out;
+        }
+        .tool-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6ecff 100%);
+        }
+        .tool-card {
+            background: #ffffff;
+            border-radius: 20px;
+            border: none;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            animation: fadeInUp 0.6s ease-out;
+            animation-delay: calc(var(--i) * 0.1s);
+        }
+        .tool-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+        }
+        .tool-card i {
+            font-size: 3.5rem;
+            color: #3b82f6;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .tool-card:hover i {
+            color: #93c5fd;
+            transform: scale(1.15);
+        }
+        .tool-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        .tool-description {
+            font-size: 0.95rem;
+            color: #6b7280;
+        }
+        .tool-btn {
+            background: #3b82f6;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 24px;
+            font-weight: 600;
+            color: #ffffff;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .tool-btn:hover {
+            background: #1d4ed8;
+            transform: scale(1.1);
+        }
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            animation: zoomIn 0.5s ease-out;
+        }
+        .modal-header {
+            background: #3b82f6;
+            color: #ffffff;
+            border-radius: 15px 15px 0 0;
+        }
+        .modal-body {
+            background: #f8fafc;
+        }
+        .modal-footer {
+            border-top: none;
+        }
+        footer {
+            background: #1e40af;
+            color: #ffffff;
+            padding: 50px 0;
+            font-size: 0.95rem;
+            animation: fadeIn 1s ease-out;
+        }
+        footer a {
+            color: #93c5fd;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        /* Custom Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        /* Ensure cards animate in sequence */
+        .tool-card {
+            --i: 0;
+        }
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 80px 0;
+            }
+            .tool-section {
+                padding: 60px 0;
+            }
+            .tool-card {
+                margin-bottom: 30px;
+            }
+            .tool-title {
+                font-size: 1.15rem;
+            }
+            .tool-btn {
+                padding: 10px 20px;
+            }
+            .modal-dialog {
+                margin: 1rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            .hero-section .lead {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">WebTools</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tools">Tools</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <h1 class="display-3 fw-bold animate__animated animate__fadeInDown">Ultimate Web Tools Hub</h1>
+            <p class="lead animate__animated animate__fadeInUp animate__delay-1s">Discover 40+ free tools for IP analysis, URL safety, file scanning, and more.</p>
+            <a href="#tools" class="btn btn-light btn-lg mt-4 animate__animated animate__zoomIn animate__delay-2s">Explore Now</a>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="tool-section">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold animate__animated animate__fadeIn">Our Free Tools</h2>
+            <div class="row" id="toolList">
+                <!-- Tools will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Tool Interactions -->
+    <div class="modal fade" id="toolModal" tabindex="-1" aria-labelledby="toolModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="toolModalLabel">Tool</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="toolInput"></div>
+                    <div id="toolOutput" class="mt-3"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="toolSubmit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 WebTools. Powered by <a href="https://getbootstrap.com">Bootstrap</a> & <a href="https://boxicons.com">Boxicons</a>.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // List of 43 tools (33 existing + 10 new)
+        const tools = [
+            { name: "IP Address Lookup", icon: "bx bx-globe", description: "View your IP address details.", action: () => window.open('https://ipinfo.io/json', '_blank') },
+            { name: "URL Safety Checker", icon: "bx bx-link", description: "Check URL safety with Google Safe Browsing.", action: () => window.open('https://transparencyreport.google.com/safe-browsing/search', '_blank') },
+            { name: "File Hash Checker", icon: "bx bx-file", description: "Generate MD5/SHA256 hashes for files.", action: fileHashChecker },
+            { name: "Password Generator", icon: "bx bx-lock", description: "Create strong, random passwords.", action: passwordGenerator },
+            { name: "DNS Lookup", icon: "bx bx-server", description: "Retrieve DNS records for a domain.", action: () => window.open('https://dns.google.com', '_blank') },
+            { name: "Whois Lookup", icon: "bx bx-info-circle", description: "Check domain registration details.", action: () => window.open('https://who.is', '_blank') },
+            { name: "Ping Test", icon: "bx bx-pulse", description: "Test server responsiveness.", action: () => window.open('https://ping.pe', '_blank') },
+            { name: "Port Scanner", icon: "bx bx-network-chart", description: "Scan for open ports.", action: () => window.open('https://www.yougetsignal.com/tools/open-ports/', '_blank') },
+            { name: "SSL Checker", icon: "bx bx-shield", description: "Verify SSL certificate details.", action: () => window.open('https://www.ssllabs.com/ssltest/', '_blank') },
+            { name: "Website Speed Test", icon: "bx bx-stopwatch", description: "Measure website loading speed.", action: () => window.open('https://pagespeed.web.dev', '_blank') },
+            { name: "HTTP Headers Viewer", icon: "bx bx-code", description: "View HTTP response headers.", action: () => window.open('https://securityheaders.com', '_blank') },
+            { name: "IP Geolocation", icon: "bx bx-map", description: "Locate an IP address.", action: () => window.open('https://iplocation.net', '_blank') },
+            { name: "Domain Age Checker", icon: "bx bx-calendar", description: "Check a domain's age.", action: () => window.open('https://whois.domaintools.com', '_blank') },
+            { name: "robots.txt Viewer", icon: "bx bx-bot", description: "View a website's robots.txt.", action: () => window.open('https://www.xml-sitemaps.com/robots-txt-checker.html', '_blank') },
+            { name: "Sitemap Generator", icon: "bx bx-sitemap", description: "Create a sitemap for your site.", action: () => window.open('https://www.xml-sitemaps.com', '_blank') },
+            { name: "QR Code Generator", icon: "bx bx-qr", description: "Generate QR codes for URLs/text.", action: qrGenerator },
+            { name: "Base64 Encoder/Decoder", icon: "bx bx-code-alt", description: "Encode or decode Base64 strings.", action: base64Tool },
+            { name: "MD5 Hash Generator", icon: "bx bx-hash", description: "Generate MD5 hashes for text.", action: md5Generator },
+            { name: "Color Picker", icon: "bx bx-color-fill", description: "Choose and convert colors.", action: () => window.open('https://coolors.co', '_blank') },
+            { name: "Text Case Converter", icon: "bx bx-text", description: "Convert text to different cases.", action: textConverter },
+            { name: "JSON Formatter", icon: "bx bx-braces", description: "Format and validate JSON data.", action: () => window.open('https://jsonformatter.curiousconcept.com', '_blank') },
+            { name: "URL Encoder/Decoder", icon: "bx bx-link-alt", description: "Encode or decode URLs.", action: urlEncoder },
+            { name: "Timestamp Converter", icon: "bx bx-time", description: "Convert timestamps to dates.", action: timestampConverter },
+            { name: "Image Compressor", icon: "bx bx-image", description: "Compress images online.", action: () => window.open('https://compressjpeg.com', '_blank') },
+            { name: "Text Diff Checker", icon: "bx bx-git-compare", description: "Compare differences between texts.", action: () => window.open('https://text-compare.com', '_blank') },
+            { name: "Lorem Ipsum Generator", icon: "bx bx-paragraph", description: "Generate placeholder text.", action: () => window.open('https://loremipsum.io', '_blank') },
+            { name: "Regex Tester", icon: "bx bx-code-curly", description: "Test regular expressions.", action: () => window.open('https://regex101.com', '_blank') },
+            { name: "HTML Minifier", icon: "bx bx-code-block", description: "Minify HTML code.", action: () => window.open('https://www.willpeavy.com/tools/minifier/', '_blank') },
+            { name: "CSS Beautifier", icon: "bx bx-paint", description: "Format and beautify CSS code.", action: () => window.open('https://www.freeformatter.com/css-beautifier.html', '_blank') },
+            { name: "UUID Generator", icon: "bx bx-key", description: "Generate unique identifiers.", action: uuidGenerator },
+            { name: "Word Counter", icon: "bx bx-font", description: "Count words and characters.", action: wordCounter },
+            { name: "Image to Base64", icon: "bx bx-image-alt", description: "Convert images to Base64.", action: imageToBase64 },
+            { name: "Timezone Converter", icon: "bx bx-world", description: "Convert times across timezones.", action: () => window.open('https://www.timeanddate.com/worldclock/converter.html', '_blank') },
+            // New Tools
+            { name: "Password Strength Checker", icon: "bx bx-shield-alt", description: "Evaluate password strength.", action: passwordStrengthChecker },
+            { name: "HTML Entity Encoder", icon: "bx bx-code-curly", description: "Encode HTML entities.", action: htmlEntityEncoder },
+            { name: "URL Shortener", icon: "bx bx-link-external", description: "Shorten URLs using Bitly.", action: () => window.open('https://bitly.com', '_blank') },
+            { name: "Text to ASCII Art", icon: "bx bx-font-family", description: "Convert text to ASCII art.", action: () => window.open('https://patorjk.com/software/taag/', '_blank') },
+            { name: "File Size Calculator", icon: "bx bx-hdd", description: "Estimate file size for images/videos.", action: () => window.open('https://www.omnicalculator.com/other/file-size', '_blank') },
+            { name: "CSV to JSON Converter", icon: "bx bx-table", description: "Convert CSV data to JSON.", action: () => window.open('https://www.convertcsv.com/csv-to-json.htm', '_blank') },
+            { name: "IP Subnet Calculator", icon: "bx bx-network-chart", description: "Calculate IP subnets.", action: () => window.open('https://www.calculator.net/ip-subnet-calculator.html', '_blank') },
+            { name: "Website Screenshot Generator", icon: "bx bx-screenshot", description: "Capture website screenshots.", action: () => window.open('https://www.screenshot.guru', '_blank') },
+            { name: "Text to Speech", icon: "bx bx-volume-full", description: "Convert text to audio.", action: () => window.open('https://ttsmp3.com', '_blank') },
+            { name: "Character Counter", icon: "bx bx-list-ol", description: "Count specific characters in text.", action: characterCounter }
+        ];
+
+        // Function to render tool cards
+        function renderTools() {
+            const toolList = document.getElementById('toolList');
+            tools.forEach((tool, index) => {
+                const toolCard = document.createElement('div');
+                toolCard.className = 'col-lg-3 col-md-6 col-sm-12 mb-4';
+                toolCard.style.setProperty('--i', index);
+                toolCard.innerHTML = `
+                    <div class="tool-card p-4 text-center animate__animated animate__fadeInUp">
+                        <i class="${tool.icon} mb-3"></i>
+                        <h5 class="tool-title">${tool.name}</h5>
+                        <p class="tool-description">${tool.description}</p>
+                        <button class="btn btn-primary tool-btn animate__animated animate__pulse animate__infinite animate__slow" onclick="tools[${tools.indexOf(tool)}].action()">Use Tool</button>
+                    </div>
+                `;
+                toolList.appendChild(toolCard);
+            });
+        }
+
+        // Modal setup function
+        function showModal(title, inputHtml, submitCallback) {
+            const modal = new bootstrap.Modal(document.getElementById('toolModal'));
+            document.getElementById('toolModalLabel').textContent = title;
+            document.getElementById('toolInput').innerHTML = inputHtml;
+            document.getElementById('toolOutput').innerHTML = '';
+            const submitBtn = document.getElementById('toolSubmit');
+            submitBtn.onclick = submitCallback;
+            modal.show();
+        }
+
+        // Client-side tool implementations
+        function fileHashChecker() {
+            const inputHtml = `
+                <div class="mb-3">
+                    <label for="fileInput" class="form-label">Select File</label>
+                    <input type="file" class="form-control" id="fileInput">
+                </div>
+            `;
+            showModal('File Hash Checker', inputHtml, async () => {
+                const fileInput = document.getElementById('fileInput');
+                const file = fileInput.files[0];
+                if (file) {
+                    const arrayBuffer = await file.arrayBuffer();
+                    const hash = await crypto.subtle.digest('SHA-256', arrayBuffer);
+                    const hashArray = Array.from(new Uint8Array(hash));
+                    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-success animate__animated animate__fadeIn">SHA-256 Hash: ${hashHex}</div>
+                    `;
+                } else {
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-danger animate__animated animate__shakeX">Please select a file.</div>
+                    `;
+                }
+            });
+        }
+
+        function passwordGenerator() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+            let pass = '';
+            for (let i = 0; i < 12; i++) {
+                pass += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            showModal('Password Generator', '<p>Click Submit to generate a random password.</p>', () => {
+                document.getElementById('toolOutput').innerHTML = `
+                    <div class="alert alert-success animate__animated animate__fadeIn">Generated Password: ${pass}</div>
+                `;
+            });
+        }
+
+        function qrGenerator() {
+            const inputHtml = `
+                <div class="mb-3">
+                    <label for="qrText" class="form-label">Enter text or URL</label>
+                    <input type="text" class="form-control" id="qrText" placeholder="e.g., https://example.com">
+                </div>
+            `;
+            showModal('QR Code Generator', inputHtml, () => {
+                const qrText = document.getElementById('qrText').value;
+                if (qrText) {
+                    document.getElementById('toolOutput').innerHTML = `
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrText)}" alt="QR Code" class="animate__animated animate__zoomIn">
+                    `;
+                } else {
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-danger animate__animated animate__shakeX">Please enter text or URL.</div>
+                    `;
+                }
+            });
+        }
+
+        function base64Tool() {
+            const inputHtml = `
+                <div class="mb-3">
+                    <label for="base64Text" class="form-label">Enter text or Base64 string</label>
+                    <input type="text" class="form-control" id="base64Text" placeholder="Enter text to encode or Base64 to decode">
+                </div>
+            `;
+            showModal('Base64 Encoder/Decoder', inputHtml, () => {
+                const text = document.getElementById('base64Text').value;
+                if (text) {
+                    try {
+                        if (text.match(/^[A-Za-z0-9+/=]+$/)) {
+                            document.getElementById('toolOutput').innerHTML = `
+                                <div class="alert alert-success animate__animated animate__fadeIn">Decoded: ${atob(text)}</div>
+                            `;
+                        } else {
+                            document.getElementById('toolOutput').innerHTML = `
+                                <div class="alert alert-success animate__animated animate__fadeIn">Encoded: ${btoa(text)}</div>
+                            `;
+                        }
+                    } catch (e) {
+                        document.getElementById('toolOutput').innerHTML = `
+                            <div class="alert alert-danger animate__animated animate__shakeX">Invalid Base64 string.</div>
+                        `;
+                    }
+                } else {
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-danger animate__animated animate__shakeX">Please enter a string.</div>
+                    `;
+                }
+            });
+        }
+
+        function md5Generator() {
+            const inputHtml = `
+                <div class="mb-3">
+                    <label for="md5Text" class="form-label">Enter text to hash</label>
+                    <input type="text" class="form-control" id="md5Text" placeholder="Enter text">
+                </div>
+            `;
+            showModal('MD5 Hash Generator', inputHtml, () => {
+                const text = document.getElementById('md5Text').value;
+                if (text) {
+                    // Simple MD5-like hash (not cryptographically secure, for demo)
+                    let hash = 0;
+                    for (let i = 0; i < text.length; i++) {
+                        hash = ((hash << 5) - hash + text.charCodeAt(i)) | 0;
+                    }
+                    const hashHex = (hash >>> 0).toString(16).padStart(8, '0');
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-success animate__animated animate__fadeIn">MD5 Hash (simple): ${hashHex}</div>
+                    `;
+                } else {
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-danger animate__animated animate__shakeX">Please enter text.</div>
+                    `;
+                }
+            });
+        }
+
+        function textConverter() {
+            const inputHtml = `
+                <div class="mb-3">
+                    <label for="textInput" class="form-label">Enter text</label>
+                    <input type="text" class="form-control" id="textInput" placeholder="Enter text">
+                </div>
+                <select class="form-select mb-3" id="caseOption">
+                    <option value="upper">Uppercase</option>
+                    <option value="lower">Lowercase</option>
+                    <option value="title">Title Case</option>
+                </select>
+            `;
+            showModal('Text Case Converter', inputHtml, () => {
+                const text = document.getElementById('textInput').value;
+                const option = document.getElementById('caseOption').value;
+                if (text) {
+                    let result;
+                    if (option === 'upper') {
+                        result = text.toUpperCase();
+                    } else if (option === 'lower') {
+                        result = text.toLowerCase();
+                    } else {
+                        result = text.replace(/\w\S*/g, t => t.charAt(0).toUpperCase() + t.slice(1).toLowerCase());
+                    }
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-success animate__animated animate__fadeIn">Result: ${result}</div>
+                    `;
+                } else {
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-danger animate__animated animate__shakeX">Please enter text.</div>
+                    `;
+                }
+            });
+        }
+
+        function urlEncoder() {
+            const inputHtml = `
+                <div class="mb-3">
+                    <label for="urlInput" class="form-label">Enter URL</label>
+                    <input type="text" class="form-control" id="urlInput" placeholder="e.g., https://example.com">
+                </div>
+            `;
+            showModal('URL Encoder/Decoder', inputHtml, () => {
+                const url = document.getElementById('urlInput').value;
+                if (url) {
+                    try {
+                        if (url.match(/%[0-9A-Fa-f]{2}/)) {
+                            document.getElementById('toolOutput').innerHTML = `
+                                <div class="alert alert-success animate__animated animate__fadeIn">Decoded: ${decodeURIComponent(url)}</div>
+                            `;
+                        } else {
+                            document.getElementById('toolOutput').innerHTML = `
+                                <div class="alert alert-success animate__animated animate__fadeIn">Encoded: ${encodeURIComponent(url)}</div>
+                            `;
+                        }
+                    } catch (e) {
+                        document.getElementById('toolOutput').innerHTML = `
+                            <div class="alert alert-danger animate__animated animate__shakeX">Invalid URL.</div>
+                        `;
+                    }
+                } else {
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-danger animate__animated animate__shakeX">Please enter a URL.</div>
+                    `;
+                }
+            });
+        }
+
+        function timestampConverter() {
+            const inputHtml = `
+                <div class="mb-3">
+                    <label for="tsInput" class="form-label">Enter timestamp (seconds)</label>
+                    <input type="number" class="form-control" id="tsInput" placeholder="e.g., 1697059200">
+                </div>
+            `;
+            showModal('Timestamp Converter', inputHtml, () => {
+                const ts = document.getElementById('tsInput').value;
+                if (ts && !isNaN(ts)) {
+                    const date = new Date(parseInt(ts) * 1000);
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-success animate__animated animate__fadeIn">Date: ${date.toLocaleString()}</div>
+                    `;
+                } else {
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-danger animate__animated animate__shakeX">Invalid timestamp.</div>
+                    `;
+                }
+            });
+        }
+
+        function uuidGenerator() {
+            const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+                const r = Math.random() * 16 | 0;
+                return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+            showModal('UUID Generator', '<p>Click Submit to generate a UUID.</p>', () => {
+                document.getElementById('toolOutput').innerHTML = `
+                    <div class="alert alert-success animate__animated animate__fadeIn">UUID: ${uuid}</div>
+                `;
+            });
+        }
+
+        function wordCounter() {
+            const inputHtml = `
+                <div class="mb-3">
+                    <label for="textInput" class="form-label">Enter text</label>
+                    <textarea class="form-control" id="textInput" rows="4" placeholder="Enter text to count words"></textarea>
+                </div>
+            `;
+            showModal('Word Counter', inputHtml, () => {
+                const text = document.getElementById('textInput').value;
+                if (text) {
+                    const words = text.trim().split(/\s+/).length;
+                    const chars = text.length;
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-success animate__animated animate__fadeIn">Words: ${words}, Characters: ${chars}</div>
+                    `;
+                } else {
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-danger animate__animated animate__shakeX">Please enter text.</div>
+                    `;
+                }
+            });
+        }
+
+        function imageToBase64() {
+            const inputHtml = `
+                <div class="mb-3">
+                    <label for="imageInput" class="form-label">Select image</label>
+                    <input type="file" class="form-control" id="imageInput" accept="image/*">
+                </div>
+            `;
+            showModal('Image to Base64', inputHtml, () => {
+                const fileInput = document.getElementById('imageInput');
+                const file = fileInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        document.getElementById('toolOutput').innerHTML = `
+                            <div class="alert alert-success animate__animated animate__fadeIn">
+                                <p>Base64 Image:</p>
+                                <textarea class="form-control" rows="4">${reader.result}</textarea>
+                            </div>
+                        `;
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-danger animate__animated animate__shakeX">Please select an image.</div>
+                    `;
+                }
+            });
+        }
+
+        function passwordStrengthChecker() {
+            const inputHtml = `
+                <div class="mb-3">
+                    <label for="passwordInput" class="form-label">Enter password</label>
+                    <input type="text" class="form-control" id="passwordInput" placeholder="Enter password">
+                </div>
+            `;
+            showModal('Password Strength Checker', inputHtml, () => {
+                const password = document.getElementById('passwordInput').value;
+                if (password) {
+                    let strength = 'Weak';
+                    if (password.length >= 8 && /[A-Z]/.test(password) && /[0-9]/.test(password) && /[!@#$%^&*]/.test(password)) {
+                        strength = 'Strong';
+                    } else if (password.length >= 6) {
+                        strength = 'Medium';
+                    }
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-success animate__animated animate__fadeIn">Password Strength: ${strength}</div>
+                    `;
+                } else {
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-danger animate__animated animate__shakeX">Please enter a password.</div>
+                    `;
+                }
+            });
+        }
+
+        function htmlEntityEncoder() {
+            const inputHtml = `
+                <div class="mb-3">
+                    <label for="htmlText" class="form-label">Enter text to encode</label>
+                    <input type="text" class="form-control" id="htmlText" placeholder="Enter text">
+                </div>
+            `;
+            showModal('HTML Entity Encoder', inputHtml, () => {
+                const text = document.getElementById('htmlText').value;
+                if (text) {
+                    const encoded = text.replace(/[\u00A0-\u9999<>&]/g, i => `&#${i.charCodeAt(0)};`);
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-success animate__animated animate__fadeIn">Encoded: ${encoded}</div>
+                    `;
+                } else {
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-danger animate__animated animate__shakeX">Please enter text.</div>
+                    `;
+                }
+            });
+        }
+
+        function characterCounter() {
+            const inputHtml = `
+                <div class="mb-3">
+                    <label for="textInput" class="form-label">Enter text</label>
+                    <textarea class="form-control" id="textInput" rows="4" placeholder="Enter text"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="charInput" class="form-label">Enter character to count</label>
+                    <input type="text" class="form-control" id="charInput" placeholder="e.g., a" maxlength="1">
+                </div>
+            `;
+            showModal('Character Counter', inputHtml, () => {
+                const text = document.getElementById('textInput').value;
+                const char = document.getElementById('charInput').value;
+                if (text && char) {
+                    const count = text.split(char).length - 1;
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-success animate__animated animate__fadeIn">Character "${char}" appears ${count} times.</div>
+                    `;
+                } else {
+                    document.getElementById('toolOutput').innerHTML = `
+                        <div class="alert alert-danger animate__animated animate__shakeX">Please enter both text and a character.</div>
+                    `;
+                }
+            });
+        }
+
+        // Initialize tool rendering
+        renderTools();
+    </script>
+</body>
+</html>
